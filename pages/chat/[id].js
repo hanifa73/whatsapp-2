@@ -34,7 +34,7 @@ export async function getServerSideProps(context){
             };
 
 
-console.log(chat,messages);
+
 
    return {
 
