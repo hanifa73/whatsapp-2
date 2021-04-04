@@ -49,7 +49,7 @@ function ChatScreen({chat,messages}) {
           
     };
     const scrollToBottom =()=>{
-        endOfMessageRef.current.scrollIntoView({
+        endOfMessageRef.current.scrollInto({
        behavior:"smooth",
        block:"start",
         });
@@ -113,9 +113,10 @@ function ChatScreen({chat,messages}) {
                    {/* show message */}
                    <p>{ShowMessage()}</p>
                
-               <EndOfMessage ref={endOfMessageRef}/>
                
+                <EndOfMessage ref={endOfMessageRef}/>
                </MessageContainer>
+              
                <ChatInput>
                    
                    
@@ -163,14 +164,15 @@ const HeaderIcons =styled.div`
 
 `;
 const MessageContainer= styled.div`
-padding:30px;
-height: 90vh;
+padding:50px;
+margin-bottom:10px;
+height: 90%vh;
 background-color:#e5ded8;`;
 
 const EndOfMessage =styled.div`
   
-  margin-bottom:80px;
-
+  margin-bottom:30px;
+ 
  
 `;
 
