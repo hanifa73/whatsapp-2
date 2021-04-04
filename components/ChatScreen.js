@@ -9,26 +9,26 @@ import {useRouter} from"next/router";
 import Message from "./Message";
 import { InsertEmoticon } from "@material-ui/icons";
 import MicIcon from '@material-ui/icons/Mic';
-// import { useState,use_state } from "react";
 import firebase from 'firebase';
 import { useState } from "react";
+import getRecipientEmail from "../utils/getrecipientEmail";
 
 
 
 
-function ChatScreen() {
+function ChatScreen({chat,messages}) {
  const [input,setInput]=useState( );
      const [user]=useAuthState(auth);
     const router=useRouter();
-   
- 
-    const [messageSnapsots]=useCollection(db
+    const [recipientSnapshot]= useCollection(db.collection('chats')
+                                                .where('email','==',getRecipientEmail(chat.users,user)));
+    const [messageSnapsots]= useCollection(db
                                            .collection('chats')
                                            .doc(router.query.id)
                                            .collection('messages')
                                            .orderBy('timestamp','asc')
                                            );
-    const ShowMessage =()=>{
+    const ShowMessage  =()=>{
      if(messageSnapsots){
          return messageSnapsots.docs.map((message) =>(
              <Message 
@@ -40,10 +40,11 @@ function ChatScreen() {
 
              }}
              />
-         ));
-     }else{
-         return JSON.parse(messages).map((message)=>(<Message  key={message.id} user={message.user} message={message}/>))
-     }  
+         ));}
+    //  }else
+    //  {
+    //      return JSON.parse('messages').map((message)=>(<Message  key={message.id} user={message.user} message={message}/>))
+    //  }  
           
     };
 
@@ -65,13 +66,20 @@ function ChatScreen() {
           });
       setInput('');
     };
+    
+    const recipient=recipientSnapshot?.docs?.[0]?.data();
+    const recipientEmail=getRecipientEmail(chat.users,user);
     return (
         <Container>
             <Header>
-                <Avatar/>
+              {recipient ?(
+                  <Avatar src={recipient?.photoURL}/>
+              ):(<Avatar>
+                  {recipientEmail[0]}
+              </Avatar>)}
                <HeaderInformation>
-                   <h3>Rec Email</h3>
-                   <p>last seen...</p>
+                   <h3>{recipientEmail}</h3>
+                   <p></p>
                </HeaderInformation>
 
                <HeaderIcons>
