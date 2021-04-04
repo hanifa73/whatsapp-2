@@ -49,7 +49,7 @@ function ChatScreen({chat,messages}) {
           
     };
     const scrollToBottom =()=>{
-        endOfMessageRef.current.scrollIntoBottom({
+        endOfMessageRef.current.scrollIntoView({
        behavior:"smooth",
        block:"start",
         });
