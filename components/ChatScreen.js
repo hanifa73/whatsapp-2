@@ -166,7 +166,7 @@ const HeaderIcons =styled.div`
 const MessageContainer= styled.div`
 padding:50px;
 margin-bottom:10px;
-height: 90%vh;
+height:90%vh;
 background-color:#e5ded8;`;
 
 const EndOfMessage =styled.div`
@@ -184,6 +184,7 @@ const Input =styled.input`
   margin-left:15px;
   margin-right:15px;
   padding:20px;
+  bottom:0;
   position: sticky;
   background-color:whitesmoke;
   border:none;
