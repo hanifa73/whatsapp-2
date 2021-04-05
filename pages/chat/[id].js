@@ -2,7 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import ChatScreen from "../../components/ChatScreen";
 import Sidebar from "../../components/Sidebar";
- import { db } from "../../firebase";
+import { db } from "../../firebase";
 
 export async function getServerSideProps(context){
 
