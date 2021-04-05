@@ -11,7 +11,7 @@ import { InsertEmoticon } from "@material-ui/icons";
 import MicIcon from '@material-ui/icons/Mic';
 import firebase from 'firebase';
 import { useRef, useState } from "react";
-import getRecipientEmail from "../utils/getrecipientEmail";
+import getRecipientEmail from "../pages/utils/getrecipientEmail";
 import TimeAgo from 'timeago-react';
 
 
